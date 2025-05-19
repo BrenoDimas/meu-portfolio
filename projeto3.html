@@ -1,0 +1,91 @@
+<!-- Projeto 3 - Contador desde o Último Título do Tottenham -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto 3 - Contador de Tempo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f5f5f5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .counter-container {
+            background-color: #007bff;
+            color: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+        }
+        .time-unit {
+            margin: 10px 0;
+            font-size: 2rem;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 10px;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Contador de Tempo Desde o Último Título do Tottenham</h1>
+        <p>Quanto tempo já se passou desde o último troféu dos Spurs?</p>
+        <nav>
+            <ul>
+                <li><a href="index.html">Voltar ao Portfólio</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="counter-container">
+        <div id="counter" class="time-unit">Carregando...</div>
+    </div>
+
+    <script>
+        function updateCounter() {
+            const lastTitleDate = new Date("2008-02-24T18:00:00-03:00");
+            const now = new Date();
+            const diff = now - lastTitleDate;
+
+            const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
+            const months = Math.floor((diff % (1000 * 60 * 60 * 24 * 365.25)) / (1000 * 60 * 60 * 24 * 30.44));
+            const days = Math.floor((diff % (1000 * 60 * 60 * 24 * 30.44)) / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById("counter").innerHTML = `
+                <strong>${years}</strong> anos, 
+                <strong>${months}</strong> meses, 
+                <strong>${days}</strong> dias, 
+                <strong>${hours}</strong> horas, 
+                <strong>${minutes}</strong> minutos, 
+                <strong>${seconds}</strong> segundos
+            `;
+        }
+
+        setInterval(updateCounter, 1000);
+    </script>
+</body>
+</html>
